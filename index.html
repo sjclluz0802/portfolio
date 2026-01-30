@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    body {
+      font-family: 'Pixelify Sans', sans-serif;
+      color: orange;
+      padding-top: 80px;
+      position: relative;
+      background-color: #0d0f18;
+    }
+
+    .bg-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      opacity: 1;
+    }
+
+    .bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      image-rendering: pixelated;
+    }
+
+    .navbar {
+      background: rgba(0,0,0,0.8);
+      border-bottom: 4px solid lime;
+      backdrop-filter: blur(5px);
+    }
+
+    .navbar-brand {
+      font-size: 24px;
+      color: lime !important;
+      text-shadow: 2px 2px 0 blue;
+    }
+
+    .nav-link {
+      color: white !important;
+      margin: 0 10px;
+      position: relative;
+      font-size: 18px;
+    }
+
+    .nav-link:hover {
+      color: lime !important;
+    }
+
+    .section {
+      padding: 80px 0;
+      background: rgba(13, 15, 24, 0.85);
+      backdrop-filter: blur(2px);
+      border-bottom: 4px dashed blue;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 40px;
+      color: lime;
+      text-shadow: 4px 4px 0 blue;
+    }
+
+    .hero-section {
+      padding: 120px 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .profile-img-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-img {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      border: 4px solid lime;
+      box-shadow: 8px 8px 0 blue;
+      image-rendering: pixelated;
+    }
+
+    .name {
+      color: lime;
+      font-weight: bold;
+    }
+
+    .btnn {
+      background: lime;
+      color: black;
+      border: none;
+      border-radius: 0;
+      padding: 12px 30px;
+      font-size: 18px;
+      box-shadow: 4px 4px 0 #000;
+      transition: all 0.1s;
+      text-transform: uppercase;
+    }
+
+    .btnn:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 #000;
+      color: blue;
+    }
+
+    .skill-card {
+      background: rgba(0,0,0,0.7);
+      border: 4px solid blue;
+      padding: 25px;
+      margin-bottom: 20px;
+      height: 100%;
+      transition: all 0.3s;
+    }
+
+    .skill-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 8px 8px 0 lime;
+    }
+
+    .pixel-progress {
+      height: 20px;
+      background-color: #2a2e3d;
+      border: 2px solid lime;
+      border-radius: 0;
+      margin-bottom: 20px;
+    }
+
+    .pixel-progress .progress-bar {
+      background-color: lime;
+      box-shadow: 2px 0 0 #000;
+      width: 0;
+      transition: width 1.5s ease-out !important;
+    }
+
+    .skill-percent {
+      display: inline-block;
+      min-width: 40px;
+      text-align: right;
+    }
+
+    .pixel-badge {
+      display: inline-block;
+      background-color: blue;
+      color: white;
+      padding: 8px 15px;
+      margin: 0 8px 10px 0;
+      border: 2px solid lime;
+      font-size: 16px;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pixel-badge:hover {
+      background-color: lime;
+      color: black;
+      transform: translate(-3px, -3px);
+      box-shadow: 4px 4px 0 blue;
+    }
+
+    .project-card {
+      background: rgba(0,0,0,0.7);
+      border: 4px solid blue;
+      margin-bottom: 30px;
+      transition: all 0.2s;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .project-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 8px 8px 0 lime;
+    }
+
+    .project-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 4px solid blue;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover .project-img {
+      transform: scale(1.10);
+    }
+
+    .project-info {
+      padding: 20px;
+    }
+
+    .pixel-form {
+      background: rgba(0,0,0,0.7);
+      border: 4px solid lime;
+      padding: 30px;
+    }
+
+    .pixel-input {
+      width: 100%;
+      background: #1a1e2d;
+      border: 2px solid blue;
+      color: white;
+      padding: 12px;
+      font-family: 'Pixelify Sans', sans-serif;
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+
+    .pixel-input:focus {
+      outline: none;
+      border-color: lime;
+      box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.3);
+    }
+
+    .invalid-feedback {
+      color: #ff3366;
+      font-size: 14px;
+      display: none;
+    }
+
+    .was-validated .pixel-input:invalid {
+      border-color: #ff3366;
+    }
+
+    .was-validated .pixel-input:invalid ~ .invalid-feedback {
+      display: block;
+    }
+
+    .social-links {
+      margin-top: 30px;
+    }
+
+    .social {
+      display: inline-block;
+      font-size: 32px;
+      color: lime;
+      margin: 0 15px;
+      transition: all 0.3s;
+      text-shadow: 2px 2px 0 blue;
+    }
+
+    .social:hover {
+      color: yellow;
+      transform: translateY(-5px) scale(1.2);
+      text-shadow: 3px 3px 0 blue;
+    }
+
+    .pixel-footer {
+      background: rgba(0,0,0,0.9);
+      color: white;
+      padding: 30px 0;
+      border-top: 4px solid lime;
+      text-align: center;
+    }
+
+    .pixel-footer p {
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 24px;
+      }
+      .profile-img {
+        width: 200px;
+        height: 200px;
+        margin-bottom: 30px;
+      }
+      .hero-section {
+        padding: 80px 0;
+        text-align: center;
+      }
+      .btnn {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-container">
+    <img src="https://i.pinimg.com/originals/56/57/7e/56577e48acdd6b57a6cbb3a07547a36c.gif" class="bg">
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-joystick"></i> SEAN_LLUZ
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <i class="bi bi-list" style="color: lime; font-size: 28px;"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">HOME</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">SKILLS</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">PROJECTS</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section id="home" class="hero-section section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-2 order-lg-1 mt-4 mt-lg-0">
+          <h3 class="display-5 mb-4">CS STUDENT | <span style="color: lime;">ASPIRING GAME DEVELOPER</span></h3>
+          <p class="lead mb-4">HI! I'M <b class="name">SEAN JOHN CONSTANTINE H. LLUZ</b>, A SOPHOMORE PURSUING A BACHELOR OF SCIENCE IN COMPUTER SCIENCE (BSCS) AT CITY COLLEGE OF ANGELES (CCA).</p>
+          <div class="d-flex gap-3">
+            <a href="#contact" class="btn btnn">CONTACT ME</a>
+            <a href="#projects" class="btn btnn">MY PROJECTS</a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 profile-img-container">
+          <img src="https://scontent.fmnl25-7.fna.fbcdn.net/v/t1.15752-9/486113733_9682975018425212_2640754179046705742_n.png?stp=dst-png_s2048x2048&_nc_cat=102&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeHNYH_boiI6C_60H5FU69tgC5s7i-punxkLmzuL6m6fGXoTrXAAN1qgec78UW7gM8P-McCDIY4yNu_fxLyQ74a_&_nc_ohc=KE0jQM2XOV4Q7kNvwFca--U&_nc_oc=AdmUV_tGWqxCeMpuripyMeTClf4pKJApoApz-0JYuesWAXvqd0pN3BXiBK0Vl05d9-7KWkunIlUazMJZZSJXDgvW&_nc_zt=23&_nc_ht=scontent.fmnl25-7.fna&oh=03_Q7cD2AFEqnF6VaNqOwFqIosJcMx3OEX4pqHDa7KkBsJVqmvqoQ&oe=68248016" class="profile-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title text-center">> ABOUT_ME</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="skill-card">
+            <p>> I'M A 2ND-YEAR COMPUTER SCIENCE STUDENT PASSIONATE ABOUT GAME DEVELOPMENT AND PROBLEM-SOLVING THROUGH CODE.</p>
+            <p>> CURRENTLY LEARNING: PYTHON, JAVA, AND WEB DEVELOPMENT</p>
+            <p>> WHEN I'M NOT CODING, I ENJOY PLAYING VIDEO GAMES AND STUDYING GAME DESIGN</p>
+            <p>> MY GOAL IS TO COMBINE MY PROGRAMMING SKILLS WITH MY LOVE FOR GAMES TO CREATE IMMERSIVE EXPERIENCES</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="container">
+      <h2 class="section-title text-center">> MY_SKILLS</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="skill-card">
+            <h3><i class="bi bi-code-square"></i> TECHNICAL_SKILLS</h3>
+            
+            <div class="skill-item">
+              <p>PYTHON <span class="skill-percent float-end">0%</span></p>
+              <div class="progress pixel-progress">
+                <div class="progress-bar" role="progressbar" data-width="85"></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <p>JAVA <span class="skill-percent float-end">0%</span></p>
+              <div class="progress pixel-progress">
+                <div class="progress-bar" role="progressbar" data-width="65"></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <p>HTML/CSS <span class="skill-percent float-end">0%</span></p>
+              <div class="progress pixel-progress">
+                <div class="progress-bar" role="progressbar" data-width="60"></div>
+              </div>
+            </div>
+            
+            <div class="skill-item">
+              <p>C++ <span class="skill-percent float-end">0%</span></p>
+              <div class="progress pixel-progress">
+                <div class="progress-bar" role="progressbar" data-width="40"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="skill-card">
+            <h3><i class="bi bi-people-fill"></i> SOFT_SKILLS</h3>
+            
+            <div class="skill-badges">
+              <span class="pixel-badge">TEAMWORK</span>
+              <span class="pixel-badge">PROBLEM SOLVING</span>
+              <span class="pixel-badge">TIME MANAGEMENT</span>
+              <span class="pixel-badge">COMMUNICATION</span>
+              <span class="pixel-badge">ADAPTABILITY</span>
+              <span class="pixel-badge">CREATIVE</span>
+            </div>
+            
+            <h3 class="mt-4"><i class="bi bi-tools"></i> TOOLS</h3>
+            <div class="skill-badges">
+              <span class="pixel-badge">VS CODE</span>
+              <span class="pixel-badge">FIGMA</span>
+              <span class="pixel-badge">OFFICE 365</span>
+              <span class="pixel-badge">ADOBE PHOTOSHOP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title text-center">> MY_PROJECTS</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="project-card">
+            <img src="https://scontent.fmnl25-1.fna.fbcdn.net/v/t1.15752-9/491012959_4017922648478624_6302723640587540446_n.png?_nc_cat=108&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGRokPgGLRrlhoVw2rQ0LkX1uu7Hz8gpdnW67sfPyCl2QKTH7xLY0G8MnojWzeTWxxxczbxPAMzYUoeGebQayqQ&_nc_ohc=FaKEbOshVz0Q7kNvwGWBXD5&_nc_oc=Adns6KgMRO1sNC_RxNYqTwdHtpa8C_eHLCqyzKWlhYUcxTE_UlvUXy2RdHrjTsECQdH2fQdnvXe1JC6uNmca1Id9&_nc_zt=23&_nc_ht=scontent.fmnl25-1.fna&oh=03_Q7cD2AG-07ETzF8Gik42vU8dumbI4VfBajHXTANeKdAz29qhHQ&oe=6824887C" class="project-img">
+            <div class="project-info">
+              <h4>HTML STYLES</h4>
+              <div class="d-flex gap-2">
+                <a href="#" class="btn btnn btn-sm">VIEW</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="project-card">
+            <img src="https://scontent.fmnl25-1.fna.fbcdn.net/v/t1.15752-9/491012959_4017922648478624_6302723640587540446_n.png?_nc_cat=108&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGRokPgGLRrlhoVw2rQ0LkX1uu7Hz8gpdnW67sfPyCl2QKTH7xLY0G8MnojWzeTWxxxczbxPAMzYUoeGebQayqQ&_nc_ohc=FaKEbOshVz0Q7kNvwGWBXD5&_nc_oc=Adns6KgMRO1sNC_RxNYqTwdHtpa8C_eHLCqyzKWlhYUcxTE_UlvUXy2RdHrjTsECQdH2fQdnvXe1JC6uNmca1Id9&_nc_zt=23&_nc_ht=scontent.fmnl25-1.fna&oh=03_Q7cD2AG-07ETzF8Gik42vU8dumbI4VfBajHXTANeKdAz29qhHQ&oe=6824887C" class="project-img">
+            <div class="project-info">
+              <h4>BOOTSTRAP</h4>
+              <div class="d-flex gap-2">
+                <a href="#" class="btn btnn btn-sm">VIEW</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="project-card">
+            <img src="https://scontent.fmnl25-6.fna.fbcdn.net/v/t1.15752-9/482840205_1815012482621775_8179181149274523763_n.png?_nc_cat=105&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeEKOYb4SwTTtBGrnHQ6jczC_X1Lq1vyCTT9fUurW_IJNN4O4cvbo1Jdhu93bHjB72IEu5_M_NETk31h5PNE-lHD&_nc_ohc=_NYrhTH08XIQ7kNvwGcwtdY&_nc_oc=AdlXhMGPs5Q7-lyBQO46heM2yUhk2fy0KY9pSG2oO_Lw4U3yeATwfFRGWU-YvwImQOy4zBZzw29-Z8eSJZojaTe6&_nc_zt=23&_nc_ht=scontent.fmnl25-6.fna&oh=03_Q7cD2AHVOc8W_Se7fllMi1d1iXxtHQTzJmJqvCxvxVLxP3lNTg&oe=68248F69" class="project-img">
+            <div class="project-info">
+              <h4>JAVASCRIPT</h4>
+              <div class="d-flex gap-2">
+                <a href="#" class="btn btnn btn-sm">VIEW</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title text-center">> CONTACT_ME</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <form id="contactForm" class="pixel-form">
+            <div class="mb-3">
+              <label for="name">> YOUR_NAME:</label>
+              <input type="text" id="name" class="pixel-input" required>
+              <div class="invalid-feedback">PLEASE ENTER YOUR NAME</div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="email">> YOUR_EMAIL:</label>
+              <input type="email" id="email" class="pixel-input" required>
+              <div class="invalid-feedback">PLEASE ENTER A VALID EMAIL</div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="subject">> SUBJECT:</label>
+              <input type="text" id="subject" class="pixel-input" required>
+              <div class="invalid-feedback">PLEASE ENTER A SUBJECT</div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="message">> MESSAGE:</label>
+              <textarea id="message" class="pixel-input" rows="5" required minlength="10"></textarea>
+              <div class="invalid-feedback">MESSAGE MUST BE AT LEAST 10 CHARACTERS</div>
+            </div>
+            
+            <button type="submit" class="btn btnn">
+              <i class="bi bi-send-fill"></i> SEND_MESSAGE
+            </button>
+          </form>
+          
+          <div class="text-center mt-5">
+            <h4>> CONNECT_WITH_ME</h4>
+            <div class="social-links">
+              <a href="https://www.facebook.com/s3anlluz" target="_blank" class="social">
+                <i class="bi bi-facebook"></i>
+              </a>
+              <a href="https://www.instagram.com/sjc05_/" target="_blank" class="social">
+                <i class="bi bi-instagram"></i>
+              </a>
+              <a href="https://x.com/wuzo223" target="_blank" class="social">
+                <i class="bi bi-twitter-x"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pixel-footer">
+    <div class="container">
+      <p>> SEAN LLUZ, C203</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.skill-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        const progressBars = this.querySelectorAll('.progress-bar');
+        const percentSpans = this.querySelectorAll('.skill-percent');
+        
+        progressBars.forEach((bar, index) => {
+          const targetWidth = bar.getAttribute('data-width');
+          let current = 0;
+          
+          bar.style.width = '0';
+          percentSpans[index].textContent = '0%';
+          
+          bar.style.width = targetWidth + '%';
+          
+          const interval = setInterval(() => {
+            current++;
+            percentSpans[index].textContent = current + '%';
+            if (current >= targetWidth) clearInterval(interval);
+          }, 1500 / targetWidth);
+        });
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        const progressBars = this.querySelectorAll('.progress-bar');
+        const percentSpans = this.querySelectorAll('.skill-percent');
+        
+        progressBars.forEach((bar, index) => {
+          bar.style.width = '0';
+          percentSpans[index].textContent = '0%';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
