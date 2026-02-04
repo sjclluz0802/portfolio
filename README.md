@@ -1,4 +1,3 @@
 # portfolio
 
-Sean Lluz
-123
+(https://sjclluz0802.github.io/portfolio/)
