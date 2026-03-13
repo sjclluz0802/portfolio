@@ -4,4 +4,5 @@
 SEAN JOHN CONSTANTINE H. LLUZ
 ![Screenshot](/Untitled23_20240901114902 (2).png)
 
-# MIDTERM LAB TASK 1
+#Midterm Tasks
+## MIDTERM LAB TASK 1
