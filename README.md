@@ -1,4 +1,6 @@
 # My Data Analytics Portfolio
 
 # About Me
-![Screenshot](/Untitled23_20240901114902 (2).png)
+SEAN JOHN CONSTANTINE H. LLUZ
+
+#MIDTERM LAB TASK 1
